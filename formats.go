@@ -2,6 +2,7 @@ package logr
 
 import (
 	"fmt"
+	"strings"
 	"time"
 )
 
@@ -14,5 +15,15 @@ type Formatter interface {
 type PlainTextFormatter struct{}
 
 func (f *PlainTextFormatter) Format(entry LogEntry) string {
-	return fmt.Sprintf("[%s] [%s] [%v] %s", entry.Level, entry.Layer, entry.Timestamp.Format(TimeFormat), entry.Message)
+	baseStr := fmt.Sprintf("[%s] [%s] [%v] %s", entry.Level, entry.Layer, entry.Timestamp.Format(TimeFormat), entry.Message)
+
+	if entry.Metadata != nil && len(entry.Metadata.data) > 0 {
+		var metadataStr []string
+		for key, value := range entry.Metadata.data {
+			metadataStr = append(metadataStr, fmt.Sprintf("%s=%v", key, value))
+		}
+		metadataJoined := strings.Join(metadataStr, " ")
+		baseStr = baseStr + " " + metadataJoined
+	}
+	return baseStr
 }
