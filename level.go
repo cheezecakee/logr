@@ -3,23 +3,23 @@ package logr
 type Level int
 
 const (
-	LevelInfo Level = iota
-	LevelError
-	LevelDebug
-	LevelWarn
-	LevelTest
+	LevelDebug Level = iota // 0 - most verbose
+	LevelInfo               // 1
+	LevelWarn               // 2
+	LevelError              // 3
+	LevelTest               // 4 - special test level
 )
 
 func (l Level) String() string {
 	switch l {
-	case LevelInfo:
-		return "INFO"
-	case LevelError:
-		return "ERROR"
 	case LevelDebug:
 		return "DEBUG"
+	case LevelInfo:
+		return "INFO"
 	case LevelWarn:
 		return "WARN"
+	case LevelError:
+		return "ERROR"
 	case LevelTest:
 		return "TEST"
 	default:
