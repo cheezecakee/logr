@@ -8,7 +8,7 @@ import (
 
 func TestPlainTextFormatterWithMetadata(t *testing.T) {
 	// Create a LogEntry
-	entry := NewEntry(LevelInfo, "HTTP", "Request started")
+	entry := NewEntry(LevelInfo, LayerHTTP, "Request started")
 	entry.AddMetadata("userID", 123)
 	entry.AddMetadata("session", "abc")
 
