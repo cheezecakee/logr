@@ -16,7 +16,7 @@ func NewEntry(level Level, layer Layer, msg string, meta ...Metadata) *LogEntry 
 	if len(meta) > 0 {
 		metadata = &meta[0]
 	} else {
-		metadata = NewMetadata()
+		metadata = nil
 	}
 	return &LogEntry{
 		Level:     level,
