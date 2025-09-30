@@ -1,21 +1,21 @@
 package logr
 
 type Metadata struct {
-	data map[string]any
+	Data map[string]any `json:"data"`
 }
 
 func NewMetadata() *Metadata {
 	return &Metadata{
-		data: make(map[string]any),
+		Data: make(map[string]any),
 	}
 }
 
 func (m *Metadata) Add(key string, value any) {
-	m.data[key] = value
+	m.Data[key] = value
 }
 
 func (m *Metadata) Get(key string) (any, bool) {
-	value, ok := m.data[key]
+	value, ok := m.Data[key]
 	if ok {
 		return value, true
 	}
