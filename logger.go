@@ -80,6 +80,24 @@ func (l *Logger) Test(msg string) {
 	l.log(LevelTest, msg)
 }
 
+// Dynamic context
+
+func (l *Logger) Errorf(format string, args ...any) {
+	l.log(LevelError, fmt.Sprintf(format, args...))
+}
+
+func (l *Logger) Infof(format string, args ...any) {
+	l.log(LevelInfo, fmt.Sprintf(format, args...))
+}
+
+func (l *Logger) Debugf(format string, args ...any) {
+	l.log(LevelDebug, fmt.Sprintf(format, args...))
+}
+
+func (l *Logger) Warnf(format string, args ...any) {
+	l.log(LevelWarn, fmt.Sprintf(format, args...))
+}
+
 func (l *Logger) log(level Level, msg string) {
 	if l.level <= level {
 		layerStr := l.getOrResolveLayer()
